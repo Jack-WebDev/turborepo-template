@@ -1,0 +1,30 @@
+services:
+  db:
+    restart: unless-stopped
+    image: postgres:15.4-alpine3.18
+    volumes:
+      - 'codeforgedbstore:/var/lib/postgresql/data'
+    ports:
+      - '5545:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=codeforge_dev
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U postgres -d codeforge_dev' ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    labels:
+      app: codeforge
+      environment: development
+    networks:
+      - codeforge-net
+
+volumes:
+  codeforgedbstore:
+
+
+networks:
+  codeforge-net:

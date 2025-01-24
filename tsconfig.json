@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+
+    "paths": {
+      "~/*": ["./*"],
+      "@apps/*": ["apps/*"],
+      "@packages/*": ["packages/*"]
+    },
+    "noEmit": true
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["apps/**/*", "packages/**/*"]
+}
