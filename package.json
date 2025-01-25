@@ -1,19 +1,20 @@
 {
   "name": "turbo-template",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "patch-package"
-
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.1",
     "@actions/glob": "^0.5.0",
     "@actions/http-client": "^2.2.3",
+    "@eslint/eslintrc": "^3.2.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.1",
     "@tsconfig/node18": "^18.2.4",
     "@turbo/gen": "^1.12.4",
