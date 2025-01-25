@@ -21,10 +21,12 @@
   "author": "Jack WebDev",
   "license": "MIT",
   "dependencies": {
+    "@codeforge/logger": "workspace:*",
     "@codeforge/utils": "workspace:*",
     "@faker-js/faker": "^9.3.0",
+    "@vitest/coverage-v8": "^3.0.4",
     "vite-tsconfig-paths": "^5.0.1",
-    "@codeforge/logger": "workspace:*"
+    "vitest": "^3.0.4"
   },
   "devDependencies": {
     "@codeforge/buildkit": "workspace:*",
