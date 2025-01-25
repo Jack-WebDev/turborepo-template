@@ -4,13 +4,14 @@ import { verify } from 'argon2';
 import { Context } from '~/context';
 import { Client, ClientScope } from './auth/client';
 import { Token } from './auth/token';
+import { User, UserRole, UserStatus } from './account';
 
 /**
  * The `AuthContext` is part of the `RequestContext` and contains info about
  * the currently authenticated token with its client, identity, and user.
  */
 export class AuthContext {
-//   user?: User;
+  user?: User;
   token?: Token;
   client?: Client;
   actorIds: string[] = [];
@@ -29,78 +30,78 @@ export class AuthContext {
       return auth;
     }
 
-    // const user = await User.query(ctx.db).findById(token.userId);
-    // if (user) {
-    //   auth.user = user;
-    //   auth.actorIds = [user.id];
-    // }
+    const user = await User.query(ctx.db).findById(token.userId);
+    if (user) {
+      auth.user = user;
+      auth.actorIds = [user.id];
+    }
 
     auth.token = token;
 
     return auth;
   }
 
-//   static async fromBasicAuth(token: string, ctx: Context): Promise<AuthContext> {
-//     const auth = new AuthContext();
-//     const [clientId, clientSecret] = Buffer.from(token, 'base64').toString().split(':');
+  static async fromBasicAuth(token: string, ctx: Context): Promise<AuthContext> {
+    const auth = new AuthContext();
+    const [clientId, clientSecret] = Buffer.from(token, 'base64').toString().split(':');
 
-//     const client = await Client.query(ctx.db).findById(clientId);
+    const client = await Client.query(ctx.db).findById(clientId ?? "");
 
-//     if (!client) {
-//       return auth;
-//     }
+    if (!client) {
+      return auth;
+    }
 
-//     if(!clientSecret) {
-//       return auth;
-//     }
+    if(!clientSecret) {
+      return auth;
+    }
 
-//     const isAuthorized = await verify(client.secret, clientSecret);
+    const isAuthorized = await verify(client.secret, clientSecret);
 
-//     if (!isAuthorized) {
-//       return auth;
-//     }
+    if (!isAuthorized) {
+      return auth;
+    }
 
-//     auth.client = client;
+    auth.client = client;
 
-//     return auth;
-//   }
+    return auth;
+  }
 
-//   public isActiveUser(): boolean {
-//     return this.user?.status === UserStatus.Active;
-//   }
+  public isActiveUser(): boolean {
+    return this.user?.status === UserStatus.Active;
+  }
 
-//   public hasUserRole(role: UserRole): boolean {
-//     return this.user?.role === role;
-//   }
+  public hasUserRole(role: UserRole): boolean {
+    return this.user?.role === role;
+  }
 
-//   public hasOneOfRole(roles: UserRole[]): boolean {
-//     const role = this.user?.role;
-//     if (!role) {
-//       return false;
-//     }
+  public hasOneOfRole(roles: UserRole[]): boolean {
+    const role = this.user?.role;
+    if (!role) {
+      return false;
+    }
 
-//     return roles.includes(role);
-//   }
+    return roles.includes(role);
+  }
 
   isAuthClient(): boolean {
     return this.client?.scope.includes(ClientScope.auth) || false;
   }
 
-//   static async fromAuthHeader(header: string, ctx: Context): Promise<AuthContext> {
-//     const [type, token] = header.split(/\s+/);
-//     const isBasic = type.toLowerCase() === 'basic';
-//     const isBearer = type.toLowerCase() === 'bearer';
+  static async fromAuthHeader(header: string, ctx: Context): Promise<AuthContext> {
+    const [type, token] = header.split(/\s+/);
+    const isBasic = type?.toLowerCase() === 'basic';
+    const isBearer = type?.toLowerCase() === 'bearer';
 
-//     if (isBearer) {
-//       return AuthContext.init(token, ctx);
-//     }
+    if (isBearer) {
+      return AuthContext.init(token ?? "", ctx);
+    }
 
-//     if (isBasic) {
-//       return AuthContext.fromBasicAuth(token, ctx);
-//     }
+    if (isBasic) {
+      return AuthContext.fromBasicAuth(token ?? "", ctx);
+    }
 
-//     return new AuthContext();
-//   }
+    return new AuthContext();
+  }
 
   public static fromUserContext(context: UserContext): AuthContext {
     const { token } = context;
@@ -125,14 +126,14 @@ export class AuthContext {
     return context;
   }
 
-//   update(user: User | Client) {
-//     if (user instanceof User) {
-//       this.user = user;
-//       this.actorIds = [user.id];
-//     } else {
-//       this.client = user;
-//     }
-//   }
+  update(user: User | Client) {
+    if (user instanceof User) {
+      this.user = user;
+      this.actorIds = [user.id];
+    } else {
+      this.client = user;
+    }
+  }
 }
 
 // export type AuthenticatedUser = Pick<User, 'id' | 'role'>;

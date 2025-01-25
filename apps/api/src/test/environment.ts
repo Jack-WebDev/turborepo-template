@@ -24,7 +24,7 @@ export async function createEnv(options: CreateEnvConfig = {}): Promise<Environm
 
   if (config.db) {
     const dbEnv = await createDBEnv({ db: true });
-    // env.db = dbEnv.db;
+    env.db = dbEnv.db;
   }
 
   if (config.server) {
@@ -42,9 +42,9 @@ export async function createEnv(options: CreateEnvConfig = {}): Promise<Environm
 export async function destroyEnv(env: Environment): Promise<void> {
   assert.ok(env, 'Cannot destroy an invalid environment.');
 
-  // if (env.db) {
-  //   await destroyDataEnv(env);
-  // }
+  if (env.db) {
+    await destroyDataEnv(env);
+  }
 
   await env.server?.stop();
 }
