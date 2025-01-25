@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@codeforge/ui": "workspace:*",
+    "@million/lint": "^1.0.14",
     "next": "^15.1.0"
   },
   "devDependencies": {
