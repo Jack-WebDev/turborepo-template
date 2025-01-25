@@ -22,27 +22,17 @@ const builder = {
     user: env.get('MAIL_USER').asString(),
     password: env.get('MAIL_PASSWORD').asString(),
   },
-  attachments: {
-    accessKeyId: env.get('ATTACHMENTS_ACCESS_KEY_ID').asString(),
-    bucket: env.get('ATTACHMENTS_BUCKET_NAME').required().asString(),
-    secretAccessKey: env.get('ATTACHMENTS_SECRET_KEY').asString(),
-    url: env.get('ATTACHMENTS_QUEUE_URL').asString(),
-    endpoint: env.get('ATTACHMENTS_ENDPOINT').asString(),
-    region: env.get('ATTACHMENTS_REGION').required().asString(),
-  },
-
-  integration: {
-    sap: {
-      user: env.get('SAP_USER').required().asString(),
-      password: env.get('SAP_PASSWORD').required().asString(),
-      baseUrl: env.get('SAP_BASE_URL').required().asString(),
-      client: env.get('SAP_CLIENT').required().asString(),
-      apiToken: env.get('SAP_API_TOKEN').required().asString(),
-    },
-  },
-  account: {
-    verifySecret: env.get('VARIFY_SECRET').required().asString(),
-  },
+  // attachments: {
+  //   accessKeyId: env.get('ATTACHMENTS_ACCESS_KEY_ID').asString(),
+  //   bucket: env.get('ATTACHMENTS_BUCKET_NAME').required().asString(),
+  //   secretAccessKey: env.get('ATTACHMENTS_SECRET_KEY').asString(),
+  //   url: env.get('ATTACHMENTS_QUEUE_URL').asString(),
+  //   endpoint: env.get('ATTACHMENTS_ENDPOINT').asString(),
+  //   region: env.get('ATTACHMENTS_REGION').required().asString(),
+  // },
+  // account: {
+  //   verifySecret: env.get('VERIFY_SECRET').required().asString(),
+  // },
   domain: {
     name: env.get('DOMAIN_NAME').required().asString(),
   },
