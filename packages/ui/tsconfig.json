@@ -1,8 +1,15 @@
 {
-  "extends": "@codeforge/ts/tsconfig.json",
+  "extends": "../ts/react-library.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "baseUrl": ".",
+    "downlevelIteration": true,
+    "paths": {
+      "~/*": ["src/*"],
+      "@ui/*": ["./src/components"],
+      "~/components": ["./src/components"],
+      "~/lib": ["./src/utils"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["dist", "build", "node_modules"],
+  "include": ["."]
 }
