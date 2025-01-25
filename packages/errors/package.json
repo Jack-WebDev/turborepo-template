@@ -1,0 +1,20 @@
+{
+  "name": "@codeforge/errors",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "eslint --config ../../eslint.config.js '**/*.ts'",
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "Jack WebDev",
+  "license": "MIT",
+  "devDependencies": {
+    "@codeforge/buildkit": "workspace:*",
+    "@codeforge/ts": "workspace:*"
+  }
+}

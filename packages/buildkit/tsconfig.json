@@ -1,5 +1,5 @@
 {
-    "extends": "../ts/base.json",
+    "extends": "../ts/base",
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {

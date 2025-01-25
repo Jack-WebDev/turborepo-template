@@ -1,11 +1,12 @@
 {
-  "name": "@codeforge/testkit",
-  "private": true,
+  "name": "@codeforge/logger",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -14,17 +15,15 @@
     }
   },
   "scripts": {
-    "build": "tsup",
-    "lint": "eslint --config ../../eslint.config.js '**/*.ts'"
+    "lint": "eslint --config ../../eslint.config.js '**/*.ts'",
+    "build": "tsup"
   },
   "keywords": [],
   "author": "Jack WebDev",
   "license": "MIT",
   "dependencies": {
-    "@codeforge/utils": "workspace:*",
-    "@faker-js/faker": "^9.3.0",
-    "vite-tsconfig-paths": "^5.0.1",
-    "@codeforge/logger": "workspace:*"
+    "pino": "^9.5.0",
+    "pino-pretty": "^11.3.0"
   },
   "devDependencies": {
     "@codeforge/buildkit": "workspace:*",
