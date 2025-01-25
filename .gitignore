@@ -1,5 +1,5 @@
 # Node.js dependencies
-/node_modules
+node_modules/
 .pnpm-debug.log*
 
 # Logs
@@ -17,7 +17,7 @@ turbo.log
 # Build output
 /.next
 /out
-/dist
+dist/
 
 # Static assets
 /.vercel
@@ -40,7 +40,7 @@ Thumbs.db
 ehthumbs.db
 
 # Turbo Repo cache
-/.turbo
+.turbo/
 /cache
 
 # pnpm-specific files
