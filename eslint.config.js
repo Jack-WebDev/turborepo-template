@@ -1,4 +1,4 @@
-import { config } from "@codeforge/lint/base.js";
+import { config } from "./packages/lint/base.js";
 import tsParser from "@typescript-eslint/parser";
 
 export default [

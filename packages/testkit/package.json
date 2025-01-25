@@ -1,0 +1,32 @@
+{
+  "name": "testkit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint --config ../../eslint.config.js '**/*.ts'"
+  },
+  "keywords": [],
+  "author": "Jack WebDev",
+  "license": "MIT",
+  "dependencies": {
+    "@codeforge/utils": "workspace:*",
+    "@faker-js/faker": "^9.3.0",
+    "vite-tsconfig-paths": "^5.0.1"
+  },
+  "devDependencies": {
+    "@codeforge/buildkit": "workspace:*",
+    "@codeforge/lint": "workspace:*"
+  }
+}
